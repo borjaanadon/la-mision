@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misión Especial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #0EB0A4;
+      --accent-glow: rgba(14,176,164,0.25);
+      --bg-primary: #090E12;
+      --bg-secondary: #131C24;
+      --text-primary: #F0F2F5;
+      --text-secondary: #9BA3AE;
+      --border: rgba(255,255,255,0.08);
+      --card-bg: #111920;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: -20%;
+      width: 1100px;
+      height: 1100px;
+      background: radial-gradient(circle, rgba(14,176,164,0.18) 0%, rgba(14,176,164,0.08) 30%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      right: -15%;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(14,176,164,0.10) 0%, rgba(14,176,164,0.04) 35%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .hero-laugh {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .hero-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .hero-text em {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 32px auto;
+      opacity: 0.6;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(14,176,164,0.12);
+      border: 1px solid rgba(14,176,164,0.25);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .section-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .section-text strong {
+      color: var(--text-primary);
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Location Card ── */
+    .location-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .location-card:hover {
+      border-color: rgba(14,176,164,0.3);
+    }
+
+    .location-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .location-name svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .location-address {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      padding-left: 32px;
+    }
+
+    .maps-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .maps-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .maps-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── Locker Card ── */
+    .locker-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 24px;
+    }
+
+    .locker-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .qr-wrap {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .qr-wrap img {
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      background: #fff;
+      padding: 8px;
+    }
+
+    .codes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .code-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .code-label {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .code-value {
+      font-family: 'DM Sans', monospace;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .locker-note {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 16px;
+      font-style: italic;
+    }
+
+    /* ── Closing ── */
+    .closing {
+      text-align: center;
+      padding: 36px 0;
+    }
+
+    .closing-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .closing-text em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .closing-warning {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .hero-laugh {
+        font-size: 2rem;
+      }
+
+      .hero-text {
+        font-size: 1.05rem;
+      }
+
+      .section-title {
+        font-size: 1.35rem;
+      }
+
+      .codes {
+        grid-template-columns: 1fr;
+      }
+
+      .qr-wrap img {
+        max-width: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-laugh">JAJAJAJAJA</div>
+      <p class="hero-text">
+        ¿Os pensabais que nos íbamos <strong>de viaje</strong>?
+      </p>
+      <p class="hero-text">
+        Nadie se sube a ningún tren... <em>De momento.</em>
+      </p>
+    </div>
+
+    <!-- Dirección -->
+    <div class="section">
+      <span class="section-badge">Primera misión</span>
+      <p class="section-text">
+        Para conocer más información, id a esta dirección:
+      </p>
+
+      <div class="location-card">
+        <div class="location-name">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Calle Acera de Recoletos, 19 — Valladolid
+        </div>
+        <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Acera+de+Recoletos+19+Valladolid+Spain" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          Abrir en Google Maps
+        </a>
+      </div>
+
+      <h2 class="section-title">Buscad un sitio muy <span class="highlight">molón</span></h2>
+    </div>
+
+    <!-- Una vez allí -->
+    <div class="section">
+      <span class="section-badge">Una vez allí</span>
+      <p class="section-text">
+        Cuando entréis, decidle lo siguiente a la persona:
+      </p>
+      <div class="locker-card" style="text-align: center; margin-bottom: 24px;">
+        <div class="code-value" style="font-size: 1.6rem;">El código es 2509</div>
+      </div>
+
+      <h2 class="section-title">Entrad dentro y mostradle el siguiente QR a la persona que se encuentre allí</h2>
+
+      <div class="locker-card">
+        <div class="qr-wrap">
+          <img src="qr.png" alt="QR Code para la consigna">
+        </div>
+        <div class="codes">
+          <div class="code-box">
+            <div class="code-label">Recovery Code</div>
+            <div class="code-value">717215</div>
+          </div>
+          <div class="code-box">
+            <div class="code-label">Booking Code</div>
+            <div class="code-value">3B57E6C2</div>
+          </div>
+        </div>
+        <div class="locker-note">Si el QR no funciona, usad el recovery code</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
