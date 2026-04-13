@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misión Especial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #0EB0A4;
+      --accent-glow: rgba(14,176,164,0.25);
+      --bg-primary: #090E12;
+      --bg-secondary: #131C24;
+      --text-primary: #F0F2F5;
+      --text-secondary: #9BA3AE;
+      --border: rgba(255,255,255,0.08);
+      --card-bg: #111920;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: -20%;
+      width: 1100px;
+      height: 1100px;
+      background: radial-gradient(circle, rgba(14,176,164,0.18) 0%, rgba(14,176,164,0.08) 30%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      right: -15%;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(14,176,164,0.10) 0%, rgba(14,176,164,0.04) 35%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Photo ── */
+    .photo-wrap {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .photo-wrap img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hero-text {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .hero-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .hero-text em {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 32px auto;
+      opacity: 0.6;
+    }
+
+    /* ── Clue Card ── */
+    .clue-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .clue-card p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .clue-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .clue-card strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .clue-card em {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .hero-text {
+        font-size: 1.05rem;
+      }
+
+      .photo-wrap img {
+        width: 180px;
+        height: 180px;
+      }
+
+      .clue-card {
+        padding: 24px 20px;
+      }
+
+      .clue-card p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Photo -->
+    <div class="photo-wrap">
+      <img src="borja.jpg" alt="">
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <p class="hero-text">
+        ¿Os pensabais que iba a estar aquí?
+      </p>
+      <p class="hero-text">
+        <strong>No os lo iba a poner tan fácil.</strong>
+      </p>
+      <div class="hero-divider"></div>
+      <p class="hero-text">
+        Ya queda <em>muy poco</em>.
+      </p>
+    </div>
+
+    <!-- Clue -->
+    <div class="clue-card">
+      <p>Frente a la <em>casa de Dios</em>, donde me comprometeré.</p>
+      <p>Id al lugar cuyo nombre sirve para <em>alumbrar los caminos</em>.</p>
+      <p><strong>Allí me encontraréis.</strong></p>
+    </div>
+
+  </div>
+</body>
+</html>
